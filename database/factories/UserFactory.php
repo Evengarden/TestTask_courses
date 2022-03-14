@@ -22,8 +22,12 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name,
-            'email' => $this->faker->unique()->safeEmail,
+            'first_name' => $this->faker->firstName,
+            'last_name' => $this->faker->lastName,
+            'email' =>  $this->faker->unique()->safeEmail,
+            'password' =>  $this->faker->password,
+            'phone' =>  $this->faker->phoneNumber,
+            'is_admin' => 0,
         ];
     }
 }

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->integer('lesson_id');
             $table->foreign('lesson_id')->references('id')->on('lessons');
-            $table->boolean('is_passed');
+            $table->boolean('is_passed')->default(false);
             $table->timestamps();
         });
     }

@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\CourseUser;
+use App\Observers\CourseUserObserver;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider

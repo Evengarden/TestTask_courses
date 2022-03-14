@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->integer('course_id');
             $table->foreign('course_id')->references('id')->on('courses');
-            $table->integer('percentage_passing');
+            $table->integer('percentage_passing')->default(0);
             $table->timestamps();
         });
     }

@@ -19,12 +19,12 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var string[]
      */
     protected $fillable = [
-        'phone', 'email', 'last_name', 'first_name'
+        'email', 'last_name', 'first_name', 'phone', 'password'
     ];
 
     public function courses()
     {
-        return $this->hasMany('App\Models\CourseUser', 'user_id');
+        return $this->hasMany('App\Models\CourseUser', 'user_id')->orderBy('percentage_passing');
     }
 
     /**
@@ -33,6 +33,26 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var string[]
      */
     protected $hidden = [
-        'password', 'is_admin'
+        'is_admin'
     ];
+
+    /**
+     * Get the identifier that will be stored in the subject claim of the JWT.
+     *
+     * @return mixed
+     */
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    /**
+     * Return a key value array, containing any custom claims to be added to the JWT.
+     *
+     * @return array
+     */
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
 }

@@ -15,15 +15,27 @@
 
 $router->group(['prefix' => 'api'], function () use ($router) {
 
-    $router->get('migrate',  ['uses' => 'UserController@migrate']);
+  $router->get('migrate',  ['uses' => 'UserController@migrate']);
 
-    $router->get('users',  ['uses' => 'UserController@showAll']);
-  
-    $router->get('authors/{id}', ['uses' => 'AuthorController@showOneAuthor']);
-  
-    $router->post('authors', ['uses' => 'AuthorController@create']);
-  
-    $router->delete('authors/{id}', ['uses' => 'AuthorController@delete']);
-  
-    $router->put('authors/{id}', ['uses' => 'AuthorController@update']);
-  });
+  //User
+  $router->get('users',  ['uses' => 'UserController@showAll']);
+
+  $router->post('users/register', ['uses' => 'UserController@register']);
+
+  $router->put('users/{id}', ['uses' => 'UserController@update']);
+
+  $router->delete('users/{id}', ['uses' => 'UserController@delete']);
+
+  $router->post('login', ['uses' => 'UserController@login']);
+
+  //Courses
+  $router->get('courses',  ['uses' => 'CourseController@showAll']);
+
+  $router->post('courses', ['uses' => 'CourseController@createCourse']);
+
+  $router->post('course_users', ['uses' => 'CourseController@addUserOnCourse']);
+
+  $router->get('course_lessons/{id}',  ['uses' => 'CourseController@getCourseLessons']);
+
+  $router->put('course_lesson_users', ['uses' => 'CourseController@completeLesson']);
+});

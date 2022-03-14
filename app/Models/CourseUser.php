@@ -21,4 +21,17 @@ class CourseUser extends Model implements AuthenticatableContract, AuthorizableC
     protected $fillable = [
         'user_id', 'course_id', 'percentage_passing'
     ];
+
+    protected static function booted()
+    {
+        static::created(function ($courseUser) {
+            $lessons = Lesson::where('course_id', $courseUser->course_id)->get();
+            foreach ($lessons as $lesson) {
+                LessonUser::create([
+                    'user_id' => $courseUser->user_id,
+                    'lesson_id' => $lesson->id
+                ]);
+            }
+        });
+    }
 }

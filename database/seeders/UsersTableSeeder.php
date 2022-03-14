@@ -15,19 +15,6 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        User::create([
-            'first_name' => 'Pete',
-            'last_name' => ' Houston',
-            'email' => 'petehouston@mail.ru',
-            'password' => '123secret',
-            'is_admin' => false,
-        ]);
-        User::create([
-            'first_name' => 'Taylor',
-            'last_name' => ' Otwell',
-            'email' => 'taylorotwell@mail.ru',
-            'password' => 'greatsecret',
-            'is_admin' => true,
-        ]);
+        User::factory(4)->create();
     }
 }
